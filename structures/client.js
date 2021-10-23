@@ -23,8 +23,8 @@ class Jeremias extends Client {
         process.on("unhandledRejection", (error) => console.log(error.stack))
         await this.loadEvents()
         await this.login(process.env.BOT_TOKEN)
-        await this.user.setActivity({ name: `${this.guilds.cache.size} guilds` })
+        await this.user.setActivity({ name: `Yay | Ajudando ${this.users.cache.size} Usuarios` })
     }
 }
 
-module.exports = Jeremias
+module.exports = Jeremiass
