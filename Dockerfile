@@ -1,4 +1,6 @@
 FROM node:16
+LABEL org.opencontainers.image.source="https://github.com/MitsyBot/Jeremias"
+
 
 WORKDIR /home/mitsy/JeremiasNew
 
