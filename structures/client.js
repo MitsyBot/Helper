@@ -27,4 +27,4 @@ class Jeremias extends Client {
     }
 }
 
-module.exports = Jeremiass
+module.exports = Jeremias
