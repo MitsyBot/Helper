@@ -22,8 +22,8 @@ jobs:
     
     - name: Buildar a imagem
       run: |
-        docker build -t ghcr.io/mitsybot/bianca:latest .
-        docker run ghcr.io/mitsybot/bianca:latest
+        docker build -t ghcr.io/mitsybot/jeremias:latest .
+        docker run ghcr.io/mitsybot/jeremias:latest
   
     - name: Enviar a imagem para o ghcr
-      run: docker push ghcr.io/mitsybot/bianca:latest
+      run: docker push ghcr.io/mitsybot/jeremias:latest
