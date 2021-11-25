@@ -1,17 +1,17 @@
-FROM node:16
+FROM node:16-alpine as builder
 LABEL org.opencontainers.image.source="https://github.com/MitsyBot/Jeremias"
 
+RUN mkdir -p /usr/src/jeremias
+WORKDIR /usr/src/jeremias
 
-WORKDIR /home/mitsy/JeremiasNew
+RUN apk update && apk upgrade
+RUN apk add git
 
-COPY package*.json ./
-
+COPY . /usr/src/jeremias/
 RUN npm install
 
-COPY . .
+FROM node:16-alpine as runner
+WORKDIR /usr/src/jeremias
+COPY --from=builder /usr/src/jeremias /usr/src/jeremias
 
-COPY --chown=node:node . .
-
-USER node
-
-CMD [ "node", "." ]
+CMD ["npm", "run", "start"]
