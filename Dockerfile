@@ -1,5 +1,4 @@
 FROM node:16-alpine as builder
-LABEL org.opencontainers.image.source="https://github.com/MitsyBot/Jeremias"
 
 RUN mkdir -p /usr/src/jeremias
 WORKDIR /usr/src/jeremias
