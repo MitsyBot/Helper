@@ -1,2 +1,2 @@
-const Jeremias = new(require("./structures/client"))
+const Jeremias = new(require("./src/client"))
 Jeremias.start()

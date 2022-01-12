@@ -1,12 +1,13 @@
 const { Client, Intents } = require("discord.js")
 const { readdirSync } = require("fs")
 require("dotenv").config();
-const path = require('path')
+const APIWebSocket = require('./structures/MitsyWebsocket')
 
 class Jeremias extends Client {
     constructor(options = { intents: Object.values(Intents.FLAGS) }) {
         super(options)
-
+        this.apiWS = new new APIWebSocket(this)
+        
     }
 
     async loadEvents() {
@@ -24,6 +25,7 @@ class Jeremias extends Client {
         await this.loadEvents()
         await this.login(process.env.BOT_TOKEN)
         await this.user.setActivity({ name: `Yay | Ajudando ${this.users.cache.size} Usuarios` })
+        this.apiWS.connect().catch(debugError);
     }
 }
 

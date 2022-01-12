@@ -5,31 +5,7 @@ class event {
         this.name = "ready"
     }
 
-    execute(client) {
-        console.log(`Jeremias iniciado`)
-
-        if(process.env.SEND_TICKETPANNEL === 'true') {
-         const channel = client.channels.cache.get(process.env.TICKET_CHANNEL)
-         channel.send({
-            embeds: [{
-                title: "Central de suporte da mitsy!",
-                description: `Bem vind@ a central de ajuda e suporte da mitsy, O lugar para você conseguir suporte sobre a mitsy (sim somente sobre a mitsy)\n\nAntes de perguntar verifique se a sua pergunta não esta no faq https://mitsy.website/faq, Caso você vá perguntar se a mitsy caiu veja o canal <#${process.env.STATUS_CHANNEL}> antes!\n\nNão encontrou sua duvida em nenhum lugar? Então abra um ticket clicando no botão abaixo!`,
-                color: process.env.MITSY_COLOR
-            }],
-            components: [{
-                type: 1,
-                components: [{
-                    type: 2,
-                    style: 1,
-                    label: "Abrir um ticket",
-                    emoji: "🎫",
-                    custom_id: "ticket"
-                }]
-            }]
-        })
-        }
-
-        
+    execute(client) {        
         if(process.env.SEND_NOTIFYPANNEL === 'true') {
 
             const simpleEmbed = new MessageEmbed()
