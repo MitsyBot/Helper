@@ -5,7 +5,7 @@ const WebSocketController = require('../websocket/ApiWebsocket')
 module.exports = class APIWebSocket {
 
 constructor(client) {
-    this.client = client;
+    this.discord.client = client;
 }
 
 
