@@ -9,8 +9,8 @@ const WebSocketController = async (socket, rawRequest, client) => {
 
 	switch (type) {
 	case 'ticket': {
-        const guild = client.guilds.cache.get(process.env.MITSY_GUILD);
-        const channel = await guild.channels.create(`duvida-${data.user.discriminator}-${entre('1', '100000')}`,{
+        const guild = client.guilds.cache.get(process.env.COMMUNITY_GUILD);
+        const channel = await guild.channels.create(`ticket-${data.user.discriminator}-${entre('1', '100000')}`,{
             permissionOverwrites: [{ allow: ["SEND_MESSAGES", "VIEW_CHANNEL"],  id: data.user.id }, { deny: ["SEND_MESSAGES", "VIEW_CHANNEL"], id: guild.id }],
             topic: data.user.id
         })
