@@ -6,7 +6,7 @@ const APIWebSocket = require('./structures/MitsyWebsocket')
 class Jeremias extends Client {
     constructor(options = { intents: Object.values(Intents.FLAGS) }) {
         super(options)
-        this.apiWS = new new APIWebSocket(this)
+        this.apiWS = new APIWebSocket(this)
         
     }
 
