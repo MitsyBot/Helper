@@ -59,13 +59,15 @@ if(button.customId === "tweetrole") {
 }
 
 if(button.customId === "faqTicket") {
+
+  const name = button.channel.name
+  const newName = name.replace("ticket", "duvida")
+  await button.channel.setName(newName)
+
 button.message.delete()
 button.channel.permissionOverwrites.edit(button.user.id, {
   SEND_MESSAGES: true
 })
-const name = button.channel.name
-const newName = name.replace("ticket", "duvida")
-await button.channel.setName(newName)
 await button.followUp({ content: `Ok, aguarde por um usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> ou do <@&${process.env.MITSY_SUPPORT_ROLE}> te responder, Enquanto isso você pode falar para nós qual sua duvida.\nE alias espero que você tenha lido o [FAQ](https://mitsy.xyz/faq) antes de abrir este ticket`, components: [{
   type: 1,
   components: [{
@@ -80,13 +82,16 @@ await button.followUp({ content: `Ok, aguarde por um usuario da <@&${process.env
 }
 
 if(button.customId === "reportTicket") {
-button.message.delete()
+
+  const name = button.channel.name
+  const newName = name.replace("ticket", "denuncia")
+  await button.channel.setName(newName)
+
+  button.message.delete()
 button.channel.permissionOverwrites.edit(button.user.id, {
   SEND_MESSAGES: true
 })
-const name = button.channel.name
-const newName = name.replace("ticket", "denuncia")
-await button.channel.setName(newName)
+
 await button.followUp({ content: `Opa aparentemente você veio denunciar um meliante, aguarde um dos usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> te responder,\nEnquanto isso diga o motivo do report e anexe o maximo de informações possivel`, components: [{
   type: 1,
   components: [{
