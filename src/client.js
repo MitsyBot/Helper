@@ -25,7 +25,7 @@ class Jeremias extends Client {
         await this.loadEvents()
         await this.login(process.env.BOT_TOKEN)
         await this.user.setActivity({ name: `Yay | Ajudando ${this.users.cache.size} Usuarios` })
-        this.apiWS.connect().catch(debugError);
+        this.apiWS.connect()
     }
 }
 

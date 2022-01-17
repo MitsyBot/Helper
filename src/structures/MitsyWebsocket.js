@@ -13,7 +13,7 @@ connect() {
     try {
         this.api = new WebSocket('wss://api.mitsy.xyz');
         this.prepareListeners();
-        console.info('Conectando ao servidor.');
+        console.log('Conectando ao servidor.');
     }
     catch (err) {
         if (err instanceof Error) console.error(`Ocorreu um erro ao se conectar ao servidor: ${err.message}`);
@@ -43,12 +43,12 @@ onError(err) {
     this.ruuningError = true;
     this.isAlive = false;
     if (this.retries >= 5) {
-        console.info('Cliente não vai mais tentar se conectar ao servidor');
+        console.log('Cliente não vai mais tentar se conectar ao servidor');
         if (this.api) this.api.removeAllListeners();
         return;
     }
 
-    console.info(`Erro: ${err.message}`);
+    console.log(`Erro: ${err.message}`);
     if (this.pingTimeout) clearTimeout(this.pingTimeout);
 
     setTimeout(() => {
@@ -59,7 +59,7 @@ onError(err) {
 
 onClose() {
     this.isAlive = false;
-    console.info('A conexão com o servidor foi fechada');
+    console.log('A conexão com o servidor foi fechada');
     if (this.ruuningError) return;
     if (this.api) this.api.terminate();
     if (this.pingTimeout) clearTimeout(this.pingTimeout);
@@ -74,7 +74,7 @@ prepareListeners() {
 
     this.api
         .on('open', () => {
-            console.info('Conectado');
+            console.log('Conectado');
 
             this.api.send(JSON.stringify({ 'client_type':'helper' }));
 
