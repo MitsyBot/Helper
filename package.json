@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Bot de suporte do servidor da mitsy.",
   "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config ."
+  },
 
   "dependencies": {
     "discord.js": "^13.2.0",
