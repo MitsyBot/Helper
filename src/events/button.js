@@ -81,7 +81,7 @@ button.message.delete()
 button.channel.permissionOverwrites.edit(button.user.id, {
   SEND_MESSAGES: true
 })
-await button.followUp({ content: `Opa aparentemente você veio denunciar um meliante, aguarde um dos usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> ou do <@&${process.env.MITSY_SUPPORT_ROLE}> te responderem,\nEnquanto isso diga o motivo do report e anexe o maximo de informações possivel`, components: [{
+await button.followUp({ content: `Opa aparentemente você veio denunciar um meliante, aguarde um dos usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> te responder,\nEnquanto isso diga o motivo do report e anexe o maximo de informações possivel`, components: [{
   type: 1,
   components: [{
       type: 2,
