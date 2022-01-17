@@ -60,12 +60,9 @@ if(button.customId === "tweetrole") {
 
 if(button.customId === "faqTicket") {
 button.message.delete()
-button.channel.overwritePermissions([
-  {
-     id: button.user.id,
-     allow: ['SEND_MESSAGES'],
-  }
-])
+button.channel.permissionOverwrites.edit(button.user.id, {
+  SEND_MESSAGES: true
+})
 await button.channel.send({ content: `Ok, aguarde por um usuario da <@${process.env.MITSY_BODYGUARD_ROLE}> ou do <@${process.envMITSY_SUPPORT_ROLE}> te responder,\nE alias espero que você tenha lido o [FAQ](https://mitsy.xyz/faq) antes de abrir este ticket`, components: [{
   type: 1,
   components: [{
