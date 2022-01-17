@@ -43,4 +43,4 @@ jobs:
             docker stop Helper
             docker image rm ghcr.io/mitsybot/helper:latest
             docker pull ghcr.io/mitsybot/helper:latest
-            docker run -it --rm -d -e  -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' --name Helper ghcr.io/mitsybot/helper:latest
+            docker run -it --rm -d -e  -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' --name helper ghcr.io/mitsybot/helper:latest
