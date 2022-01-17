@@ -14,7 +14,7 @@ class Jeremias extends Client {
         const files = readdirSync("./src/events")
         const filesName = files.map(file => file.replace(".js", ""))
         for(const fileName of filesName) {
-            const event = require(`../events/${fileName}`)
+            const event = require(`./events/${fileName}`)
             const data = new event()
             this.on(data.name, params => data.execute(params, this))
         }
