@@ -57,6 +57,27 @@ if(button.customId === "tweetrole") {
         await button.followUp({ content: `Prontinho, agora você ira ser notificado dos tweets da mitsy`, ephemeral: true })
       }
 }
+
+if(button.customId === "faqTicket") {
+button.message.delete()
+button.channel.overwritePermissions([
+  {
+     id: button.user.id,
+     allow: ['SEND_MESSAGES'],
+  }
+])
+await button.channel.send({ content: `Ok, aguarde por um usuario da <@${process.env.MITSY_BODYGUARD_ROLE}> ou do <@${process.envMITSY_SUPPORT_ROLE}> te responder,\nE alias espero que você tenha lido o [FAQ](https://mitsy.xyz/faq) antes de abrir este ticket`, components: [{
+  type: 1,
+  components: [{
+      type: 2,
+      style: 1,
+      label: "Fechar o ticket",
+      emoji: "<:mitsy_coffee:894277577701728347>",
+      custom_id: "closeTicket"
+  }]
+}]
+})
+}
         if(button.customId === "closeTicket") {
             await button.message.edit({ components: [{
                 type: 1,
