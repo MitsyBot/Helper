@@ -41,6 +41,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             docker stop Helper
+            docker rm Helper
             docker image rm ghcr.io/mitsybot/helper:latest
             docker pull ghcr.io/mitsybot/helper:latest
-            docker run -it --rm -d -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' --name Helper ghcr.io/mitsybot/helper:latest
+            docker run -it -d -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' --name Helper ghcr.io/mitsybot/helper:latest
