@@ -26,7 +26,7 @@ const WebSocketController = async (socket, rawRequest) => {
             }]
         }]
     })
-		socket.api.send(JSON.stringify({ id, message: 'Ticket aberto com sucesso' }));
+		socket.api.send(JSON.stringify({ id, res: 'Ticket aberto com sucesso' }));
 		break;
 	}
 	}
