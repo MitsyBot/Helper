@@ -10,25 +10,36 @@ const WebSocketController = async (socket, rawRequest) => {
 	switch (type) {
 	case 'ticket': {
         const guild = socket.client.guilds.cache.get(process.env.COMMUNITY_GUILD);
+        if(guild.member(data.user.id)){
         const channel = await guild.channels.create(`ticket-${data.user.name}-${entre('1', '100000')}`,{
-            permissionOverwrites: [{ allow: ["SEND_MESSAGES", "VIEW_CHANNEL"],  id: data.user.id }, { deny: ["SEND_MESSAGES", "VIEW_CHANNEL"], id: guild.id }],
+            permissionOverwrites: [{ allow: ["VIEW_CHANNEL"],  id: data.user.id }, { deny: ["SEND_MESSAGES", "VIEW_CHANNEL"], id: guild.id }],
             topic: `<@${data.user.id}>`
         })
         await channel.setParent(process.env.TICKET_OPEN_CATEGORY)
-        await channel.send({ content: `Prontinho! Eu criei um ticket para você, faça sua pergunta e aguarde até que um membro da equipe venha tirar sua dúvida\n\nFaça sua pergunta de uma forma simples e objetiva, se você precisar, anexe imagens. Para que a <@&${process.env.MITSY_SUPPORT_ROLE}>, <@&${process.env.MITSY_BODYGUARD_ROLE}> possam te ajudar com mais eficiência.\n\nE nós esperamos que você tambem tenha lido a pagina de [FAQ](https://mitsy.xyz/faq) no website`, components: [{
+        await channel.send({ content: `Prontinho! Eu criei um ticket para você, Antes de começar precisamos saber por que exatamente você esta aqui. escolha no botão abaixo`, components: [{
             type: 1,
             components: [{
                 type: 2,
                 style: 1,
-                label: "Fechar o seu ticket",
-                emoji: "📝",
-                custom_id: "closeTicket"
+                label: "Fazer uma denuncia",
+                emoji: "<:mitsy_ban:894277577731084308>",
+                custom_id: "reportTicket"
+            },
+            {
+                type: 2,
+                style: 1,
+                label: "Duvida sobre a mitsy",
+                emoji: "<:mitsy_think:834129966299217950>",
+                custom_id: "faqTicket"
             }]
         }]
     })
 		socket.api.send(JSON.stringify({ id, res: 'Ticket aberto com sucesso' }));
 		break;
-	}
+	} else {
+        socket.api.send(JSON.stringify({ id, res: 'User not joined the guild' }))
+    }
+}
 	}
 };
 
