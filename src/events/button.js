@@ -81,6 +81,9 @@ button.message.delete()
 button.channel.permissionOverwrites.edit(button.user.id, {
   SEND_MESSAGES: true
 })
+const name = button.channel.name.toString()
+const newName = name.replace("ticket", "denuncia")
+button.channel.setName(newName)
 await button.followUp({ content: `Opa aparentemente você veio denunciar um meliante, aguarde um dos usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> te responder,\nEnquanto isso diga o motivo do report e anexe o maximo de informações possivel`, components: [{
   type: 1,
   components: [{
