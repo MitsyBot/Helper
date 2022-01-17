@@ -63,7 +63,25 @@ button.message.delete()
 button.channel.permissionOverwrites.edit(button.user.id, {
   SEND_MESSAGES: true
 })
-await button.followUp({ content: `Ok, aguarde por um usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> ou do <@&${process.env.MITSY_SUPPORT_ROLE}> te responder,\nE alias espero que você tenha lido o [FAQ](https://mitsy.xyz/faq) antes de abrir este ticket`, components: [{
+await button.followUp({ content: `Ok, aguarde por um usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> ou do <@&${process.env.MITSY_SUPPORT_ROLE}> te responder, Enquanto isso você pode falar para nós qual sua duvida.\nE alias espero que você tenha lido o [FAQ](https://mitsy.xyz/faq) antes de abrir este ticket`, components: [{
+  type: 1,
+  components: [{
+      type: 2,
+      style: 1,
+      label: "Fechar o ticket",
+      emoji: "<:mitsy_coffee:894277577701728347>",
+      custom_id: "closeTicket"
+  }]
+}]
+})
+}
+
+if(button.customId === "reportTicket") {
+button.message.delete()
+button.channel.permissionOverwrites.edit(button.user.id, {
+  SEND_MESSAGES: true
+})
+await button.followUp({ content: `Opa aparentemente você veio denunciar um meliante, aguarde um dos usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> ou do <@&${process.env.MITSY_SUPPORT_ROLE}> te responderem,\nEnquanto isso diga o motivo do report e anexe o maximo de informações possivel`, components: [{
   type: 1,
   components: [{
       type: 2,
