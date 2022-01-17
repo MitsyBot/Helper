@@ -13,7 +13,7 @@ connect() {
     try {
         this.api = new WebSocket('wss://api.mitsy.xyz');
         this.prepareListeners();
-        console.info('Cliente esta tentando se conectar ao servidor.');
+        console.info('Conectando ao servidor.');
     }
     catch (err) {
         if (err instanceof Error) console.error(`Ocorreu um erro ao se conectar ao servidor: ${err.message}`);
@@ -74,11 +74,15 @@ prepareListeners() {
 
     this.api
         .on('open', () => {
-            console.info('Cliente foi conectado ao servidor');
+            console.info('Conectado');
+
+            this.api.send(JSON.stringify({ 'client_type':'helper' }));
+
             this.retries = 0;
             this.heartbeat();
         })
-        .on('message', (rawRequest) => WebSocketController(this.api, rawRequest, this.client))
+
+        .on('message', (rawRequest) => WebSocketController(this, rawRequest))
         .on('close', () => this.onClose())
         .on('error', (err) => this.onError(err))
         .on('ping', (data) => this.heartbeat(data));
