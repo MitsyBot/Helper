@@ -24,7 +24,7 @@ class Jeremias extends Client {
         process.on("unhandledRejection", (error) => console.log(error.stack))
         await this.loadEvents()
         await this.login(process.env.BOT_TOKEN)
-        await this.user.setActivity({ name: `Yay | Ajudando ${this.users.cache.size} Usuarios` })
+        await this.user.setActivity({ name: `☄ An shiny comet appears` })
         this.apiWS.connect()
     }
 }
