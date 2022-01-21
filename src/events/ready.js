@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { sendServerStart } = require('../utils/serverStart')
 class event {
     constructor() {
         this.name = "ready"
@@ -7,7 +6,6 @@ class event {
 
     execute(client) {  
 
-        sendServerStart(client)      
         if(process.env.SEND_NOTIFYPANNEL === 'true') {
 
             const simpleEmbed = new MessageEmbed()
