@@ -7,6 +7,10 @@ class event {
 	}
 	async execute(button, client) {
 		await button.deferUpdate();
+
+		if (button.customId === 'not_aprove') {
+			button.message.delete();
+		}
 		if (button.customId === 'aprove_background') {
 			const name = button.message.content.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
 				collection = button.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
@@ -39,6 +43,26 @@ class event {
 				headers: {
 					'Authorization': 'DJQWDIQWIDJOQKMXNQWIXWJQOXKJQHIO-SKXNJHQBGWQIOXPQLWKXQ.XQWXQ.XW8QIODKJQWIC09QKOSXNZBVQW-0QIWEYTQ87S9',
 				},
+			});
+			await button.message.edit({ components: [{
+				type: 1,
+				components: [{
+					type: 2,
+					style: 3,
+					label: 'Aprovado!',
+					emoji: '<:mitsy_yes:853638770107482163>',
+					custom_id: 'aprove_background',
+					disabled: true,
+				},
+				{
+					type: 2,
+					style: 4,
+					label: 'Melhor não!',
+					emoji: '<:mitsy_no:853638580139720714>',
+					custom_id: 'not_aprove',
+					disabled: true,
+				}],
+			}],
 			});
 		}
 
