@@ -14,7 +14,7 @@ class event {
             collection = button.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
             rarity = button.message.content.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0];
             const body = {
-              name, collection, user, rarity, copyright
+              name, collection, rarity
             }
             console.log(body)
           }
