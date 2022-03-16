@@ -1,0 +1,63 @@
+name: CI-CANARY
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  push_to_registry:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with: 
+          submodules: true
+          token: ${{ secrets.TOKEN }}
+
+      - name: Docker builder
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login GHCR
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.TOKEN }}
+
+      - name: Build Docker
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          version: latest
+          file: Dockerfile
+          push: true
+          tags: ghcr.io/mitsybot/helper:latest
+      - name: Enviar os arquivos para maquina da mitsy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker stop Helper
+            docker rm Helper
+            docker image rm ghcr.io/mitsybot/helper:latest
+            docker pull ghcr.io/mitsybot/helper:latest
+            docker run -it -d -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' \
+            -e TICKET_OPEN_CATEGORY='${{ secrets.TICKET_OPEN_CATEGORY }}' \
+            -e MITSY_COLOR='${{ secrets.MITSY_COLOR }}' \
+            -e MITSY_SUPPORT_ROLE='${{ secrets.MITSY_SUPPORT_ROLE }}' \
+            -e MITSY_BODYGUARD_ROLE='${{ secrets.MITSY_BODYGUARD_ROLE }}' \
+            -e TICKET_CLOSED_CATEGORY='${{ secrets.TICKET_CLOSED_CATEGORY }}' \
+            -e COMMUNITY_GUILD='${{ secrets.COMMUNITY_GUILD }}' \
+            -e NOTIFY_ROLE='${{ secrets.NOTIFY_ROLE }}' \
+            -e INCOMING_ROLE='${{ secrets.INCOMING_ROLE }}' \
+            -e STATUS_ROLE='${{ secrets.STATUS_ROLE }}' \
+            -e TWEET_ROLE='${{ secrets.TWEET_ROLE }}' \
+            -e ROLES_CHANNEL='${{ secrets.ROLES_CHANNEL }}' \
+            -e BACKGROUNDS_CHANNEL='${{ secrets.BACKGROUNDS_CHANNEL }}' \
+            --name Helper ghcr.io/mitsybot/helper:latest

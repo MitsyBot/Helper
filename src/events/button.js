@@ -9,6 +9,7 @@ class event {
             )
           }
         await button.deferUpdate()
+        console.log(button)
 
         if(button.customId === "updatesrole") {
             const role = client.guilds.cache.get(process.env.COMMUNITY_GUILD).roles.cache.get(process.env.NOTIFY_ROLE);
