@@ -16,8 +16,11 @@ class event {
             const body = {
               name, collection, rarity
             }
-            const message_attach = button.message.attachments
+            const message_attach = button.message.attachments[0]
             console.log(message_attach)
+            const attachment = new FormData();
+            attachment.append('file', buffer, { filename: message_attach.name, contentType: message_attach.contentType, knownLength: buffer.toString().length });
+
 
             console.log(body)
           }
