@@ -11,21 +11,19 @@ class event {
 			const name = button.message.content.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
 				collection = button.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
 				rarity = button.message.content.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0];
-			const body = {
-				name, collection, rarity,
-			};
+
 			const message_attach = JSON.parse(JSON.stringify(Array.from(button.message.attachments.values())[0]));
 			const image = await axios.get(message_attach.attachment, {
 				responseType: 'arraybuffer',
 			});
-			const anysize = 3;
+			const anysize = 8;
 			const charset = 'abcdefghijklmnopqrstuvwxyz1234567890';
-			let result = '';
-			for (let i = 0; i < anysize; i++) {result += charset[Math.floor(Math.random() * charset.length)];}
+			let id = '';
+			for (let i = 0; i < anysize; i++) {id += charset[Math.floor(Math.random() * charset.length)];}
 			const imageBuffer = Buffer.from(image.data, 'binary');
 			const buffered = new FormData();
-			buffered.append('file', imageBuffer, { filename: `${result}.png`, contentType: 'image/png', knownLength: imageBuffer.toString().length });
-			const aaa = await axios.post('https://cdn.poluxtrail.fun/background/', buffered, {
+			buffered.append('file', imageBuffer, { filename: `${id}.png`, contentType: 'image/png', knownLength: imageBuffer.toString().length });
+			await axios.post('https://cdn.poluxtrail.fun/background/', buffered, {
 				headers: {
 					...buffered.getHeaders(),
 					'Authorization': 'dsaioqwjdqjidqwspodkmqwiodsqh',
@@ -33,7 +31,16 @@ class event {
 				maxBodyLength: 20971520,
 				maxContentLength: 20971520,
 			});
-			console.log(aaa.data);
+			const from = button.message.mentions.members.first();
+			const body = {
+				id, name, collection, rarity, from: from.id,
+			};
+			console.log(from);
+			await axios.post('https://api.mitsy.xyz/background/', body, {
+				headers: {
+					'Authorization': 'DJQWDIQWIDJOQKMXNQWIXWJQOXKJQHIO-SKXNJHQBGWQIOXPQLWKXQ.XQWXQ.XW8QIODKJQWIC09QKOSXNZBVQW-0QIWEYTQ87S9',
+				},
+			});
 			console.log(body);
 		}
 
