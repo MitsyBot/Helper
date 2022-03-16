@@ -19,7 +19,7 @@ class event {
             const message_attach = Array.from(button.message.attachments.values())
 
             console.log(message_attach[0])
-            console.log(message_attach[0].MessageAttachment)
+            console.log(message_attach[0].MessageAttachment())
             JSON.stringify(message_attach[0])
             console.log(body)
           }
