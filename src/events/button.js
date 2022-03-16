@@ -33,10 +33,10 @@ class event {
 			});
 			const from = button.message.mentions.members.first();
 			const body = {
-				id, name, collection, rarity, from: from.id,
+				id, name, collection, rarity, from: from.user.id,
 			};
 			console.log(from);
-			await axios.post('https://api.mitsy.xyz/background/', body, {
+			await axios.post('https://api.mitsy.xyz/shop/background/create', body, {
 				headers: {
 					'Authorization': 'DJQWDIQWIDJOQKMXNQWIXWJQOXKJQHIO-SKXNJHQBGWQIOXPQLWKXQ.XQWXQ.XW8QIODKJQWIC09QKOSXNZBVQW-0QIWEYTQ87S9',
 				},
