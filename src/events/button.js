@@ -18,10 +18,22 @@ class event {
 			const image = await axios.get(message_attach.attachment, {
 				responseType: 'arraybuffer',
 			});
+			const anysize = 3;
+			const charset = 'abcdefghijklmnopqrstuvwxyz1234567890';
+			let result = '';
+			for (let i = 0; i < anysize; i++) {result += charset[Math.floor(Math.random() * charset.length)];}
 			const imageBuffer = Buffer.from(image.data, 'binary');
 			const buffered = new FormData();
-			buffered.append('file', imageBuffer, { filename: 'unknown.png', contentType: 'image/png', knownLength: imageBuffer.toString().length });
-			console.log(buffered);
+			buffered.append('file', imageBuffer, { filename: `${result}.png`, contentType: 'image/png', knownLength: imageBuffer.toString().length });
+			const aaa = await axios.post('https://cdn.poluxtrail.fun/background/', buffered, {
+				headers: {
+					...buffered.getHeaders(),
+					'Authorization': 'dsaioqwjdqjidqwspodkmqwiodsqh',
+				},
+				maxBodyLength: 20971520,
+				maxContentLength: 20971520,
+			});
+			console.log(aaa.data);
 			console.log(body);
 		}
 
