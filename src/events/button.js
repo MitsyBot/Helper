@@ -11,13 +11,13 @@ class event {
         await button.deferUpdate()
           if(button.customId === "aprove_background") {
             const name = msg.body.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
-            collection = msg.body.match(/((?<=\nColeção: )(.*)(?=\n))/)[0];
-            user = msg.body.match(/((?<=\nSugerido por: )(.*)(?=\n))/)[0];
-            rarity = msg.body.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0];
+            collection = msg.body.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
+            user = msg.body.match(/((?<=\nSugerido por: )(.*)(?=\n))/)[0],
+            rarity = msg.body.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0],
             copyright = msg.body.match(/((?<=\nDireitos: )(.*)(?=\n))/)[0];
 
             const body = {
-              name, collection, by, rarity, copyright
+              name, collection, user, rarity, copyright
             }
             console.log(body)
           }
