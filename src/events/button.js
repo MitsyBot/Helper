@@ -9,7 +9,13 @@ class event {
             )
           }
         await button.deferUpdate()
-        console.log(button)
+          if(button.customId === "aprove_background") {
+            const [name, collection, by, rarity, copyright] = [button.message.content.match(/((?<=\nNome: )(.*)(?=\n))/), button.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/), button.message.content.match(/((?<=\nSugerido por: )(.*)(?=\n))/), button.message.content.match(/((?<=\nRaridade: )(.*)(?=\n))/), button.message.content.match(/((?<=\nDireitos: )(.*)(?=\n))/)];
+            const body = {
+              name, collection, by, rarity, copyright
+            }
+            console.log(body)
+          }
 
         if(button.customId === "updatesrole") {
             const role = client.guilds.cache.get(process.env.COMMUNITY_GUILD).roles.cache.get(process.env.NOTIFY_ROLE);
