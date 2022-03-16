@@ -38,7 +38,12 @@ const WebSocketController = async (socket, rawRequest) => {
 		break;
 }
 case 'background': {
-    const file = new MessageAttachment(data.url);
+    const file = new MessageAttachment(data.image.url);
+    const embed = {
+        image: {
+            url: `attachment://${image.name}`,
+        },
+    };
     const guild = socket.client.guilds.cache.get(process.env.COMMUNITY_GUILD);
     const channel = guild.channels.cache.get(process.env.BACKGROUNDS_CHANNEL)
     await channel.send({ content: `Sugerido por: <@${data.user.id}>\nNome: ${data.background.name}\nColeção: ${data.background.collection}\nRaridade: ${data.background.rarity}\nDireitos: ${data.background.copyright}`, components: [{
@@ -58,6 +63,7 @@ case 'background': {
             emoji: "<:mitsy_no:853638580139720714>",
             custom_id: "not_aprove"
         }],
+        embeds: [embed],
         files: [file]
     }],
 })
