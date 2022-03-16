@@ -18,7 +18,7 @@ class event {
             }
             const message_attach = Array.from(button.message.attachments)
 
-            console.log(message_attach.array()[0])
+            console.log(message_attach)
 
             console.log(body)
           }
