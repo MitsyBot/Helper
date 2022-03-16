@@ -1,3 +1,4 @@
+const { MessageAttachment } = require('discord.js')
 const WebSocketController = async (socket, rawRequest) => {
 	const { type, data, id } = JSON.parse(rawRequest.toString());
 
