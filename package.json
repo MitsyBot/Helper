@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node -r dotenv/config ."
   },
-
   "dependencies": {
+    "axios": "^0.26.1",
     "discord.js": "^13.2.0",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^8.0.1"
