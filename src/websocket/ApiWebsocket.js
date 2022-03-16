@@ -60,6 +60,7 @@ const WebSocketController = async (socket, rawRequest) => {
 		}],
 		files: [file],
 		});
+		socket.api.send(JSON.stringify({ id, res: { msg: 'Mensagem criada' } }));
 	}
 
 	}
