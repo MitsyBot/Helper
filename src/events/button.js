@@ -20,7 +20,7 @@ class event {
 
             console.log(message_attach[0])
             console.log(message_attach[0].MessageAttachment)
-            JSON.parse(message_attach[0])
+            JSON.stringify(message_attach[0])
             console.log(body)
           }
 
