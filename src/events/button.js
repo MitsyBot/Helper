@@ -10,11 +10,11 @@ class event {
           }
         await button.deferUpdate()
           if(button.customId === "aprove_background") {
-            const name = message.content.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
-            collection = message.content.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
-            user = message.content.match(/((?<=\nSugerido por: )(.*)(?=\n))/)[0],
-            rarity = message.content.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0],
-            copyright = message.content.match(/((?<=\nDireitos: )(.*)(?=\n))/)[0];
+            const name = interaction.message.content.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
+            collection = interaction.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
+            user = interaction.message.content.match(/((?<=\nSugerido por: )(.*)(?=\n))/)[0],
+            rarity = interaction.message.content.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0],
+            copyright = interaction.message.content.match(/((?<=\nDireitos: )(.*)(?=\n))/)[0];
 
             const body = {
               name, collection, user, rarity, copyright
