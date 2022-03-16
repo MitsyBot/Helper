@@ -41,7 +41,7 @@ case 'background': {
     const file = new MessageAttachment(data.image.url);
     const embed = {
         image: {
-            url: `attachment://${image.name}`,
+            url: `attachment://${data.image.name}`,
         },
     };
     const guild = socket.client.guilds.cache.get(process.env.COMMUNITY_GUILD);
