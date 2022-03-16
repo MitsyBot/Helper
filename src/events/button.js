@@ -12,7 +12,6 @@ class event {
           if(button.customId === "aprove_background") {
             const name = button.message.content.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
             collection = button.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
-            user = button.message.content.match(/((?<=\nSugerido por: )(.*)(?=\n))/)[0],
             rarity = button.message.content.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0],
             copyright = button.message.content.match(/((?<=\nDireitos: )(.*)(?=\n))/)[0];
 
