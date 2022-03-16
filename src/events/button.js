@@ -16,9 +16,10 @@ class event {
             const body = {
               name, collection, rarity
             }
-            const message_attach = button.message.attachments.values()
+            const message_attach = Array.from(button.message.attachments.values())
 
-            console.log(message_attach)
+            console.log(message_attach[0])
+            console.log(message_attach[0].MessageAttachment)
 
             console.log(body)
           }
