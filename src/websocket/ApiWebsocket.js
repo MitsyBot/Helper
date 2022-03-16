@@ -63,9 +63,8 @@ case 'background': {
             emoji: "<:mitsy_no:853638580139720714>",
             custom_id: "not_aprove"
         }],
-        embeds: [embed],
-        files: [file]
     }],
+    files: [file]
 })
 }
 
