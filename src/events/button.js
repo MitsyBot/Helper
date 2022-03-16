@@ -17,11 +17,8 @@ class event {
               name, collection, rarity
             }
             const message_attach = button.message.attachments
-            let response = await axios.get(message_attach., {
-                                responseType: 'arraybuffer'
-                             });
             console.log(message_attach)
-
+            console.log(message_attach.name)
             console.log(body)
           }
 
