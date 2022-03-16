@@ -10,7 +10,12 @@ class event {
           }
         await button.deferUpdate()
           if(button.customId === "aprove_background") {
-            const [name, collection, by, rarity, copyright] = [button.message.content.match(/((?<=\nNome: )(.*)(?=\n))/), button.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/), button.message.content.match(/((?<=\nSugerido por: )(.*)(?=\n))/), button.message.content.match(/((?<=\nRaridade: )(.*)(?=\n))/), button.message.content.match(/((?<=\nDireitos: )(.*)(?=\n))/)];
+            const name = msg.body.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
+            collection = msg.body.match(/((?<=\nColeção: )(.*)(?=\n))/)[0];
+            user = msg.body.match(/((?<=\nSugerido por: )(.*)(?=\n))/)[0];
+            rarity = msg.body.match(/((?<=\nRaridade: )(.*)(?=\n))/)[0];
+            copyright = msg.body.match(/((?<=\nDireitos: )(.*)(?=\n))/)[0];
+
             const body = {
               name, collection, by, rarity, copyright
             }

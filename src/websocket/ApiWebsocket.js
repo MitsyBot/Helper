@@ -46,7 +46,7 @@ case 'background': {
     };
     const guild = socket.client.guilds.cache.get(process.env.COMMUNITY_GUILD);
     const channel = guild.channels.cache.get(process.env.BACKGROUNDS_CHANNEL)
-    await channel.send({ content: `Sugerido por: <@${data.user.id}>\nNome: ${data.background.name}\nColeção: ${data.background.collection}\nRaridade: ${data.background.rarity}\nDireitos: ${data.background.copyright}`, components: [{
+    await channel.send({ content: `Sugerido por: <@${data.user.id}>\nNome: ${data.background.name}\nColeção: ${data.background.collection}\nRaridade: ${data.background.rarity}\nDireitos: ${data.background.copyright}\n`, components: [{
         type: 1,
         components: [{
             type: 2,
