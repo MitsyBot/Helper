@@ -1,5 +1,5 @@
 const axios = require('axios');
-// const FormData = require('form-data');
+const FormData = require('form-data');
 
 class event {
 	constructor() {
@@ -19,8 +19,9 @@ class event {
 				responseType: 'arraybuffer',
 			});
 			const imageBuffer = Buffer.from(image.data, 'binary');
-			console.log(imageBuffer);
-			console.log(message_attach);
+			const buffered = new FormData();
+			buffered.append('file', imageBuffer, { filename: 'unknown.png', contentType: 'image/png', knownLength: imageBuffer.toString().length });
+			console.log(buffered);
 			console.log(body);
 		}
 
