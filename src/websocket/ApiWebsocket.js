@@ -48,12 +48,15 @@ case 'background': {
             style: 3,
             label: "Aprovado!",
             emoji: "<:mitsy_yes:853638770107482163>",
+            custom_id: "closeTicket",
+            custom_id: "aprove_background"
         },
         {
             type: 2,
             style: 4,
             label: "Melhor não!",
             emoji: "<:mitsy_no:853638580139720714>",
+            custom_id: "not_aprove"
         }],
         files: [file]
     }],
