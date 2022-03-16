@@ -16,10 +16,9 @@ class event {
             const body = {
               name, collection, rarity
             }
-            const message_attach = Array.from(button.message.attachments.values())
+            const message_attach = JSON.parse(JSON.stringify(Array.from(button.message.attachments.values())[0]))
 
-            console.log(message_attach[0])
-            console.log(JSON.parse(JSON.stringify(message_attach[0])))
+            console.log(message_attach)
             console.log(body)
           }
 
