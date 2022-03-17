@@ -56,7 +56,8 @@ class event {
 				.setTitle('Um novo background foi aprovado')
 				.setDescription(`Nome: ${name}\nColeção: ${collection}\nRaridade: ${rarity}\nRaridade: ${Number(rarity) * 7000}\nQuem enviou: ${from.user.username}`)
 				.setThumbnail(message_attach.attachment)
-				.setTimestamp();
+				.setFooter({ text: `Background aprovado por ${button.user.username}`, iconURL:	button.user.avatar });
+
 
 			webhook.send({ embeds: [embed] });
 

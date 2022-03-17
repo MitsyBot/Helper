@@ -59,5 +59,7 @@ jobs:
             -e STATUS_ROLE='${{ secrets.STATUS_ROLE }}' \
             -e TWEET_ROLE='${{ secrets.TWEET_ROLE }}' \
             -e ROLES_CHANNEL='${{ secrets.ROLES_CHANNEL }}' \
+            -e BACKGROUNDS_WEBHOOK_ID='${{ secrets.BACKGROUNDS_WEBHOOK_ID }}' \
+            -e BACKGROUNDS_WEBHOOK_TOKEN='${{ secrets.BACKGROUNDS_WEBHOOK_TOKEN }}' \
             -e BACKGROUNDS_CHANNEL='${{ secrets.BACKGROUNDS_CHANNEL }}' \
             --name Helper ghcr.io/mitsybot/helper:latest
