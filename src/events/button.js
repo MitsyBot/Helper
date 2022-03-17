@@ -52,9 +52,9 @@ class event {
 			);
 
 			const embed = new MessageEmbed()
-				.setColor('#fd0000')
+				.setColor('#8DF04D')
 				.setTitle('Um novo background foi aprovado')
-				.setDescription(`Nome: ${name}\nColeção: ${collection}\nRaridade: ${rarity}\nRaridade: ${Number(rarity) * 7000}\nQuem enviou: ${from.user.username}`)
+				.setDescription(button.message.content + `\nValor: ${Number(rarity) * 7000}`)
 				.setImage(message_attach.attachment)
 				.setFooter({ text: `Background aprovado por ${button.user.username}`, iconURL:	`https://cdn.discordapp.com/avatars/${button.user.id}/${button.user.avatar}` });
 
