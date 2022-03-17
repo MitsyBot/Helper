@@ -50,12 +50,12 @@ class event {
 				process.env.BACKGROUNDS_WEBHOOK_ID,
 				process.env.BACKGROUNDS_WEBHOOK_TOKEN,
 			);
-			console.log(message_attach.url);
+
 			const embed = new MessageEmbed()
 				.setColor('#fd0000')
 				.setTitle('Um novo background foi aprovado')
 				.setDescription(`Nome: ${name}\nColeção: ${collection}\nRaridade: ${rarity}\nRaridade: ${Number(rarity) * 7000}\nQuem enviou: ${from.user.username}`)
-				.setThumbnail(message_attach.attachment)
+				.setImage(message_attach.attachment)
 				.setFooter({ text: `Background aprovado por ${button.user.username}`, iconURL:	`https://cdn.discordapp.com/avatars/${button.user.id}/${button.user.avatar}` });
 
 
