@@ -1,5 +1,6 @@
 const axios = require('axios');
 const FormData = require('form-data');
+const { MessageEmbed } = require('discord.js');
 
 class event {
 	constructor() {
@@ -44,6 +45,21 @@ class event {
 					'Authorization': 'DJQWDIQWIDJOQKMXNQWIXWJQOXKJQHIO-SKXNJHQBGWQIOXPQLWKXQ.XQWXQ.XW8QIODKJQWIC09QKOSXNZBVQW-0QIWEYTQ87S9',
 				},
 			});
+
+			const webhook = client.fetchWebhook(
+				process.env.BACKGROUNDS_WEBHOOK_ID,
+				process.env.BACKGROUNDS_WEBHOOK_TOKEN,
+			);
+
+			const embed = new MessageEmbed()
+				.setColor('#fd0000')
+				.setTitle('Um novo background foi aprovado')
+				.setDescription(`Nome: ${name}\nColeção: ${collection}\nRaridade: ${rarity}\nRaridade: ${Number(rarity) * 7000}\nQuem enviou: ${from.user.username}`)
+				.setThumbnail(message_attach.attachment)
+				.setTimestamp();
+
+			webhook.send({ embeds: [embed] });
+
 			await button.message.edit({ components: [{
 				type: 1,
 				components: [{
