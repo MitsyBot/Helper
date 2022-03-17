@@ -46,7 +46,7 @@ class event {
 				},
 			});
 
-			const webhook = client.fetchWebhook(
+			const webhook = await client.fetchWebhook(
 				process.env.BACKGROUNDS_WEBHOOK_ID,
 				process.env.BACKGROUNDS_WEBHOOK_TOKEN,
 			);
