@@ -50,7 +50,7 @@ class event {
 				process.env.BACKGROUNDS_WEBHOOK_ID,
 				process.env.BACKGROUNDS_WEBHOOK_TOKEN,
 			);
-
+			console.log(message_attach.url);
 			const embed = new MessageEmbed()
 				.setColor('#fd0000')
 				.setTitle('Um novo background foi aprovado')
