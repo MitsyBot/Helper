@@ -40,7 +40,7 @@ class event {
 					description: description,
 					title: title,
 				},
-				file: art.filename,
+				file: art.data.filename,
 				artist: user.id,
 			};
 
