@@ -61,6 +61,33 @@ const WebSocketController = async (socket, rawRequest) => {
 		files: [file],
 		});
 		socket.api.send(JSON.stringify({ id, res: { msg: 'Mensagem criada' } }));
+		break;
+	}
+
+	case 'fanart': {
+		const file = new MessageAttachment(data.file.url);
+		const guild = socket.client.guilds.cache.get(process.env.COMMUNITY_GUILD);
+		const channel = guild.channels.cache.get(process.env.FANARTS_CHANNEL);
+		await channel.send({ content: `Artista: <@${data.user.id}>\nTitulo: ${data.art.title}\nDescrição: ${data.art.description}\n\nDeseja aprovar a arte?`, components: [{
+			type: 1,
+			components: [{
+				type: 2,
+				style: 3,
+				label: 'Aprovado!',
+				emoji: '<:mitsy_yes:853638770107482163>',
+				custom_id: 'aprove_fanart',
+			},
+			{
+				type: 2,
+				style: 4,
+				label: 'Melhor não!',
+				emoji: '<:mitsy_no:853638580139720714>',
+				custom_id: 'not_aprove',
+			}],
+		}],
+		files: [file],
+		});
+		socket.api.send(JSON.stringify({ id, res: { msg: 'Mensagem criada' } }));
 	}
 
 	}
