@@ -33,6 +33,7 @@ class event {
 				maxBodyLength: 20971520,
 				maxContentLength: 20971520,
 			});
+			console.log('🚀 ~ file: button.js ~ line 36 ~ event ~ execute ~ art', art);
 			const user = button.message.mentions.members.first();
 
 			const body = {
@@ -41,7 +42,7 @@ class event {
 					title: title,
 				},
 				file: art.filename,
-				user,
+				artist: user.id,
 			};
 
 			await axios.post('https://api.mitsy.xyz/fanarts/create', body, {
