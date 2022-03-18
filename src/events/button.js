@@ -24,9 +24,9 @@ class event {
 			const imageBuffer = Buffer.from(image.data, 'binary');
 			const buffered = new FormData();
 			buffered.append('file', imageBuffer, { filename: message_attach.name, contentType:message_attach.contentType, knownLength: imageBuffer.toString().length });
-			const user = button.message.mentions.members.first();
+			const artist = button.message.mentions.members.first();
 
-			const art = await axios.post(`https://cdn.poluxtrail.fun/community/attachments/${user.id}`, buffered, {
+			const art = await axios.post(`https://cdn.poluxtrail.fun/community/attachments/${artist.user.id}`, buffered, {
 				headers: {
 					...buffered.getHeaders(),
 					'Authorization': process.env.CDN_AUTHORIZATION,
@@ -34,7 +34,6 @@ class event {
 				maxBodyLength: 20971520,
 				maxContentLength: 20971520,
 			});
-			console.log('🚀 ~ file: button.js ~ line 37 ~ event ~ execute ~ user', user);
 
 			const body = {
 				art: {
@@ -42,7 +41,7 @@ class event {
 					title: title,
 				},
 				file: art.data.filename,
-				artist: user.id,
+				artist: artist.user.id,
 			};
 
 			await axios.post('https://api.mitsy.xyz/fanarts/create', body, {
