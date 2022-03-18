@@ -54,6 +54,8 @@ jobs:
             -e MITSY_BODYGUARD_ROLE='${{ secrets.MITSY_BODYGUARD_ROLE }}' \
             -e TICKET_CLOSED_CATEGORY='${{ secrets.TICKET_CLOSED_CATEGORY }}' \
             -e COMMUNITY_GUILD='${{ secrets.COMMUNITY_GUILD }}' \
+            -e API_TOKEN='${{ secrets.API_TOKEN }}' \
+            -e CDN_AUTHORIZATION='${{ secrets.CDN_AUTHORIZATION }}' \
             -e NOTIFY_ROLE='${{ secrets.NOTIFY_ROLE }}' \
             -e INCOMING_ROLE='${{ secrets.INCOMING_ROLE }}' \
             -e STATUS_ROLE='${{ secrets.STATUS_ROLE }}' \

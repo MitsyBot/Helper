@@ -21,17 +21,17 @@ class event {
 			const image = await axios.get(message_attach.attachment, {
 				responseType: 'arraybuffer',
 			});
-			const anysize = 8;
+			const size = 8;
 			const charset = 'abcdefghijklmnopqrstuvwxyz1234567890';
 			let id = '';
-			for (let i = 0; i < anysize; i++) {id += charset[Math.floor(Math.random() * charset.length)];}
+			for (let i = 0; i < size; i++) {id += charset[Math.floor(Math.random() * charset.length)];}
 			const imageBuffer = Buffer.from(image.data, 'binary');
 			const buffered = new FormData();
 			buffered.append('file', imageBuffer, { filename: `${id}.png`, contentType: 'image/png', knownLength: imageBuffer.toString().length });
 			await axios.post('https://cdn.poluxtrail.fun/background/', buffered, {
 				headers: {
 					...buffered.getHeaders(),
-					'Authorization': 'dsaioqwjdqjidqwspodkmqwiodsqh',
+					'Authorization': process.env.CDN_AUTHORIZATION,
 				},
 				maxBodyLength: 20971520,
 				maxContentLength: 20971520,
@@ -42,7 +42,7 @@ class event {
 			};
 			await axios.post('https://api.mitsy.xyz/shop/background/create', body, {
 				headers: {
-					'Authorization': 'DJQWDIQWIDJOQKMXNQWIXWJQOXKJQHIO-SKXNJHQBGWQIOXPQLWKXQ.XQWXQ.XW8QIODKJQWIC09QKOSXNZBVQW-0QIWEYTQ87S9',
+					'Authorization': process.env.API_TOKEN,
 				},
 			});
 
@@ -145,7 +145,7 @@ class event {
 			button.channel.permissionOverwrites.edit(button.user.id, {
 				SEND_MESSAGES: true,
 			});
-			await button.followUp({ content: `Ok, aguarde por um usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> ou do <@&${process.env.MITSY_SUPPORT_ROLE}> te responder, Enquanto isso você pode falar para nós qual sua duvida.\nE alias espero que você tenha lido o [FAQ](https://mitsy.xyz/faq) antes de abrir este ticket`, components: [{
+			await button.followUp({ content: `Ok, aguarde por um usuário da <@&${process.env.MITSY_BODYGUARD_ROLE}> ou do <@&${process.env.MITSY_SUPPORT_ROLE}> te responder, Enquanto isso você pode falar para nós qual sua duvida.\nE alias espero que você tenha lido o [FAQ](https://mitsy.xyz/faq) antes de abrir este ticket`, components: [{
 				type: 1,
 				components: [{
 					type: 2,
@@ -169,7 +169,7 @@ class event {
 				SEND_MESSAGES: true,
 			});
 
-			await button.followUp({ content: `Opa aparentemente você veio denunciar um meliante, aguarde um dos usuario da <@&${process.env.MITSY_BODYGUARD_ROLE}> te responder,\nEnquanto isso diga o motivo do report e anexe o maximo de informações possivel`, components: [{
+			await button.followUp({ content: `Opa aparentemente você veio denunciar um meliante, aguarde um dos usuário da <@&${process.env.MITSY_BODYGUARD_ROLE}> te responder,\nEnquanto isso diga o motivo do report e anexe o máximo de informações possível`, components: [{
 				type: 1,
 				components: [{
 					type: 2,
