@@ -29,7 +29,7 @@ class event {
 			const artist = button.message.mentions.members.first();
 			console.log('🚀 ~ file: button.js ~ line 32 ~ event ~ execute ~ artist.user.id', artist.user.id);
 
-			const art = await axios.post(`https://cdn.poluxtrail.fun/fanart/${artist.user.id}`, buffered, {
+			const art = await axios.post(`https://cdn.poluxtrail.fun/community/attachments/${artist.user.id}`, buffered, {
 				headers: {
 					...buffered.getHeaders(),
 					'Authorization': process.env.CDN_AUTHORIZATION,
