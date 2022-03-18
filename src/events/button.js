@@ -33,7 +33,6 @@ class event {
 				maxBodyLength: 20971520,
 				maxContentLength: 20971520,
 			});
-			console.log('🚀 ~ file: button.js ~ line 36 ~ event ~ execute ~ art', art);
 			const user = button.message.mentions.members.first();
 
 			const body = {
@@ -41,7 +40,7 @@ class event {
 					description: description,
 					title: title,
 				},
-				file: `${id.png}`,
+				file: art.filename,
 				artist: user.id,
 			};
 
