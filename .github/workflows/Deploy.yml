@@ -56,6 +56,7 @@ jobs:
             -e COMMUNITY_GUILD='${{ secrets.COMMUNITY_GUILD }}' \
             -e API_TOKEN='${{ secrets.API_TOKEN }}' \
             -e CDN_AUTHORIZATION='${{ secrets.CDN_AUTHORIZATION }}' \
+            -e FANARTS_CHANNEL='${{ secrets.FANARTS_CHANNEL }}' \
             -e NOTIFY_ROLE='${{ secrets.NOTIFY_ROLE }}' \
             -e INCOMING_ROLE='${{ secrets.INCOMING_ROLE }}' \
             -e STATUS_ROLE='${{ secrets.STATUS_ROLE }}' \
