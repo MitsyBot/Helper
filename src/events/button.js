@@ -12,6 +12,83 @@ class event {
 		if (button.customId === 'not_aprove') {
 			button.message.delete();
 		}
+
+		if (button.customId === 'aprove_fanart') {
+			const title = button.message.content.match(/((?<=\nTitulo: )(.*)(?=\n))/)[0],
+				description = button.message.content.match(/((?<=\nDescrição: )(.*)(?=\n))/)[0];
+			const message_attach = JSON.parse(JSON.stringify(Array.from(button.message.attachments.values())[0]));
+			const image = await axios.get(message_attach.attachment, {
+				responseType: 'arraybuffer',
+			});
+
+			const imageBuffer = Buffer.from(image.data, 'binary');
+			const buffered = new FormData();
+			buffered.append('file', imageBuffer);
+
+			const art = await axios.post('https://cdn.poluxtrail.fun/background/', buffered, {
+				headers: {
+					...buffered.getHeaders(),
+					'Authorization': process.env.CDN_AUTHORIZATION,
+				},
+				maxBodyLength: 20971520,
+				maxContentLength: 20971520,
+			});
+			const user = button.message.mentions.members.first();
+
+			const body = {
+				art: {
+					description: description,
+					title: title,
+				},
+				file: art.filename,
+				user,
+			};
+
+			await axios.post('https://api.mitsy.xyz/fanarts/create', body, {
+				headers: {
+					'Authorization': process.env.API_TOKEN,
+				},
+			});
+
+			const webhook = await client.fetchWebhook(
+				process.env.FANARTS_WEBHOOK_ID,
+				process.env.FANARTS_WEBHOOK_TOKEN,
+			);
+
+			const embed = new MessageEmbed()
+				.setColor('#8DF04D')
+				.setTitle('Uma nova fanart foi enviada')
+				.setDescription(`Artista: <@${user.id}>\nTitulo: ${title}\nDescrição: ${description}`)
+				.setImage(message_attach.attachment)
+				.setFooter({ text: `Background aprovado por ${button.user.username}`, iconURL:	`https://cdn.discordapp.com/avatars/${button.user.id}/${button.user.avatar}` });
+
+
+			webhook.send({ embeds: [embed] });
+
+
+			await button.message.edit({ components: [{
+				type: 1,
+				components: [{
+					type: 2,
+					style: 3,
+					label: 'Aprovado!',
+					emoji: '<:mitsy_yes:853638770107482163>',
+					custom_id: 'aprove_fanart',
+					disabled: true,
+				},
+				{
+					type: 2,
+					style: 4,
+					label: 'Melhor não!',
+					emoji: '<:mitsy_no:853638580139720714>',
+					custom_id: 'not_aprove',
+					disabled: true,
+				}],
+			}],
+			});
+
+		}
+
 		if (button.customId === 'aprove_background') {
 			const name = button.message.content.match(/((?<=\nNome: )(.*)(?=\n))/)[0],
 				collection = button.message.content.match(/((?<=\nColeção: )(.*)(?=\n))/)[0],
