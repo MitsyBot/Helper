@@ -23,8 +23,11 @@ class event {
 
 			const imageBuffer = Buffer.from(image.data, 'binary');
 			const buffered = new FormData();
-			buffered.append('file', imageBuffer, { filename: message_attach.name, contentType:message_attach.contentType, knownLength: imageBuffer.toString().length });
+			buffered.append('file', imageBuffer, { filename: message_attach.name, contentType: message_attach.contentType, knownLength: imageBuffer.toString().length });
+			console.log('🚀 ~ file: button.js ~ line 27 ~ event ~ execute ~ message_attach.contentType', message_attach.contentType);
+			console.log('🚀 ~ file: button.js ~ line 27 ~ event ~ execute ~  message_attach.name', message_attach.name);
 			const artist = button.message.mentions.members.first();
+			console.log('🚀 ~ file: button.js ~ line 32 ~ event ~ execute ~ artist.user.id', artist.user.id);
 
 			const art = await axios.post(`https://cdn.poluxtrail.fun/community/attachments/${artist.user.id}`, buffered, {
 				headers: {
@@ -34,6 +37,7 @@ class event {
 				maxBodyLength: 20971520,
 				maxContentLength: 20971520,
 			});
+			console.log('🚀 ~ file: button.js ~ line 40 ~ event ~ execute ~ art', art);
 
 			const body = {
 				art: {
