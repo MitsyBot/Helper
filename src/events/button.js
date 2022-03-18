@@ -58,7 +58,7 @@ class event {
 			const embed = new MessageEmbed()
 				.setColor('#8DF04D')
 				.setTitle('Uma nova fanart foi enviada')
-				.setDescription(`Artista: <@${user.id}>\nTitulo: ${title}\nDescrição: ${description}`)
+				.setDescription(`Artista: <@${artist.user.id}>\nTitulo: ${title}\nDescrição: ${description}`)
 				.setImage(message_attach.attachment)
 				.setFooter({ text: `Background aprovado por ${button.user.username}`, iconURL:	`https://cdn.discordapp.com/avatars/${button.user.id}/${button.user.avatar}` });
 
