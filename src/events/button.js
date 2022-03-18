@@ -23,7 +23,7 @@ class event {
 
 			const imageBuffer = Buffer.from(image.data, 'binary');
 			const buffered = new FormData();
-			buffered.append('file', imageBuffer);
+			buffered.append('file', imageBuffer, { filename: message_attach.name, contentType:message_attach.contentType, knownLength: imageBuffer.toString().length });
 
 			const art = await axios.post('https://cdn.poluxtrail.fun/background/', buffered, {
 				headers: {
@@ -41,7 +41,7 @@ class event {
 					description: description,
 					title: title,
 				},
-				file: art.data.filename,
+				file: `${id.png}`,
 				artist: user.id,
 			};
 
