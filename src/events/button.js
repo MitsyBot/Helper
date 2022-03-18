@@ -34,6 +34,7 @@ class event {
 				maxContentLength: 20971520,
 			});
 			const user = button.message.mentions.members.first();
+			console.log('🚀 ~ file: button.js ~ line 37 ~ event ~ execute ~ user', user);
 
 			const body = {
 				art: {
