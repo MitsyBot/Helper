@@ -3,6 +3,9 @@ FROM node:16-alpine as builder
 RUN mkdir -p /usr/src/jeremias
 WORKDIR /usr/src/jeremias
 
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN apk update && apk upgrade
 RUN apk add git
 
