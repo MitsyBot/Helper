@@ -10,7 +10,14 @@ const WebSocketController = async (socket, rawRequest) => {
 
 	switch (type) {
 	case 'ticket': {
+
 		const guild = socket.client.guilds.cache.get(process.env.COMMUNITY_GUILD);
+		const guildmember = await guild.member.fetch(data.user.id)
+		if (guildmember.id !== data.user.id) {
+			socket.api.send(JSON.stringify({ id, res: { err: true, msg: 'Você não está no servidor' } }));
+			return;
+		}
+
 		const channel = await guild.channels.create(`ticket-${data.user.name}-${entre('1', '100000')}`, {
 			permissionOverwrites: [{ allow: ['VIEW_CHANNEL'], id: data.user.id }, { deny: ['SEND_MESSAGES', 'VIEW_CHANNEL'], id: guild.id }],
 			topic: `<@${data.user.id}>`,
