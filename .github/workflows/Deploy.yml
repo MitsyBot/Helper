@@ -47,7 +47,7 @@ jobs:
             docker rm Helper
             docker image rm ghcr.io/mitsybot/helper:latest
             docker pull ghcr.io/mitsybot/helper:latest
-            docker run -it -d -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' \
+            docker run -it -d --restart=always -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' \
             -e TICKET_OPEN_CATEGORY='${{ secrets.TICKET_OPEN_CATEGORY }}' \
             -e MITSY_COLOR='${{ secrets.MITSY_COLOR }}' \
             -e MITSY_SUPPORT_ROLE='${{ secrets.MITSY_SUPPORT_ROLE }}' \
