@@ -11,7 +11,7 @@ const WebSocketController = async (socket, rawRequest) => {
 	switch (type) {
 	case 'ticket': {
 
-		const guild = socket.client.guilds.cache.get("75328200044838922");
+		const guild = socket.client.guilds.cache.get("775328200044838922");
                 console.log(guild)
 		const guildmember = await guild.member.fetch(data.user.id)
 		if (guildmember.id !== data.user.id) {
