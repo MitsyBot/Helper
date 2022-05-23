@@ -12,8 +12,7 @@ const WebSocketController = async (socket, rawRequest) => {
 	case 'ticket': {
 
 		const guild = socket.client.guilds.cache.get("775328200044838922");
-                console.log(data)
-		const guildmember = await guild.member.fetch(data.user.id)
+		const guildmember = await guild.members.fetch(data.user.id)
 		if (guildmember.id !== data.user.id) {
 			socket.api.send(JSON.stringify({ id, res: { err: true, msg: 'Você não está no servidor' } }));
 			return;
