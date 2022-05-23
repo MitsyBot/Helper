@@ -11,7 +11,8 @@ const WebSocketController = async (socket, rawRequest) => {
 	switch (type) {
 	case 'ticket': {
 
-		const guild = socket.client.guilds.cache.get(process.env.COMMUNITY_GUILD);
+		const guild = socket.client.guilds.cache.get("75328200044838922");
+                console.log(guild)
 		const guildmember = await guild.member.fetch(data.user.id)
 		if (guildmember.id !== data.user.id) {
 			socket.api.send(JSON.stringify({ id, res: { err: true, msg: 'Você não está no servidor' } }));
