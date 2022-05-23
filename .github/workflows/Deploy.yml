@@ -53,7 +53,7 @@ jobs:
             -e MITSY_SUPPORT_ROLE='${{ secrets.MITSY_SUPPORT_ROLE }}' \
             -e MITSY_BODYGUARD_ROLE='${{ secrets.MITSY_BODYGUARD_ROLE }}' \
             -e TICKET_CLOSED_CATEGORY='${{ secrets.TICKET_CLOSED_CATEGORY }}' \
-            -e COMMUNITY_GUILD='${{ secrets.COMMUNITY_GUILD }}' \
+            -e COMMUNITY_GUILD={{ secrets.COMMUNITY_GUILD }}' \
             -e API_TOKEN='${{ secrets.API_TOKEN }}' \
             -e CDN_AUTHORIZATION='${{ secrets.CDN_AUTHORIZATION }}' \
             -e FANARTS_CHANNEL='${{ secrets.FANARTS_CHANNEL }}' \
