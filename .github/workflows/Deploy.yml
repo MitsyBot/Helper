@@ -48,23 +48,4 @@ jobs:
             docker image rm ghcr.io/mitsybot/helper:latest
             docker pull ghcr.io/mitsybot/helper:latest
             docker run -it -d --restart=always -e BOT_TOKEN='${{ secrets.BOT_TOKEN }}' \
-            -e TICKET_OPEN_CATEGORY='${{ secrets.TICKET_OPEN_CATEGORY }}' \
-            -e MITSY_COLOR='${{ secrets.MITSY_COLOR }}' \
-            -e MITSY_SUPPORT_ROLE='${{ secrets.MITSY_SUPPORT_ROLE }}' \
-            -e MITSY_BODYGUARD_ROLE='${{ secrets.MITSY_BODYGUARD_ROLE }}' \
-            -e TICKET_CLOSED_CATEGORY='${{ secrets.TICKET_CLOSED_CATEGORY }}' \
-            -e COMMUNITY_GUILD={{ secrets.COMMUNITY_GUILD }}' \
-            -e API_TOKEN='${{ secrets.API_TOKEN }}' \
-            -e CDN_AUTHORIZATION='${{ secrets.CDN_AUTHORIZATION }}' \
-            -e FANARTS_CHANNEL='${{ secrets.FANARTS_CHANNEL }}' \
-            -e FANARTS_WEBHOOK_ID='${{ secrets.FANARTS_WEBHOOK_ID }}' \
-            -e FANARTS_WEBHOOK_ID='${{ secrets.FANARTS_WEBHOOK_ID }}' \
-            -e NOTIFY_ROLE='${{ secrets.NOTIFY_ROLE }}' \
-            -e INCOMING_ROLE='${{ secrets.INCOMING_ROLE }}' \
-            -e STATUS_ROLE='${{ secrets.STATUS_ROLE }}' \
-            -e TWEET_ROLE='${{ secrets.TWEET_ROLE }}' \
-            -e ROLES_CHANNEL='${{ secrets.ROLES_CHANNEL }}' \
-            -e BACKGROUNDS_WEBHOOK_ID='${{ secrets.BACKGROUNDS_WEBHOOK_ID }}' \
-            -e BACKGROUNDS_WEBHOOK_TOKEN='${{ secrets.BACKGROUNDS_WEBHOOK_TOKEN }}' \
-            -e BACKGROUNDS_CHANNEL='${{ secrets.BACKGROUNDS_CHANNEL }}' \
             --name Helper ghcr.io/mitsybot/helper:latest
